@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB24AD86-1F69-4107-A27E-6D643BB4C310}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GUI_TicketSalesSystem</RootNamespace>
+    <AssemblyName>GUI_TicketSalesSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="QuanTriVien\FormBaoCaoTongHop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanTriVien\FormBaoCaoTongHop.Designer.cs">
+      <DependentUpon>FormBaoCaoTongHop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanTriVien\FormCaiDatHeThong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanTriVien\FormCaiDatHeThong.Designer.cs">
+      <DependentUpon>FormCaiDatHeThong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanTriVien\FormCapQuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanTriVien\FormCapQuyen.Designer.cs">
+      <DependentUpon>FormCapQuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NguoiDung\FormChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NguoiDung\FormChangePassword.Designer.cs">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanTriVien\FormDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanTriVien\FormDashboard.Designer.cs">
+      <DependentUpon>FormDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatVe\FormDatVe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatVe\FormDatVe.Designer.cs">
+      <DependentUpon>FormDatVe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatVe\FormDoiVe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatVe\FormDoiVe.Designer.cs">
+      <DependentUpon>FormDoiVe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatVe\FormHuyVe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatVe\FormHuyVe.Designer.cs">
+      <DependentUpon>FormHuyVe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanTriVien\FormLichSuHoatDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanTriVien\FormLichSuHoatDong.Designer.cs">
+      <DependentUpon>FormLichSuHoatDong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NguoiDung\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NguoiDung\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanTriVien\FormQuanLyNguoiDung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanTriVien\FormQuanLyNguoiDung.Designer.cs">
+      <DependentUpon>FormQuanLyNguoiDung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanTriVien\FormQuanTriVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanTriVien\FormQuanTriVien.Designer.cs">
+      <DependentUpon>FormQuanTriVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NguoiDung\FormRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NguoiDung\FormRegister.Designer.cs">
+      <DependentUpon>FormRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanTriVien\FormThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanTriVien\FormThongKe.Designer.cs">
+      <DependentUpon>FormThongKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatVe\FormTraCuu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatVe\FormTraCuu.Designer.cs">
+      <DependentUpon>FormTraCuu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatVe\FormVeCuaToi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatVe\FormVeCuaToi.Designer.cs">
+      <DependentUpon>FormVeCuaToi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="utils\Debounce.cs" />
+    <EmbeddedResource Include="QuanTriVien\FormBaoCaoTongHop.resx">
+      <DependentUpon>FormBaoCaoTongHop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanTriVien\FormCaiDatHeThong.resx">
+      <DependentUpon>FormCaiDatHeThong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanTriVien\FormCapQuyen.resx">
+      <DependentUpon>FormCapQuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NguoiDung\FormChangePassword.resx">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanTriVien\FormDashboard.resx">
+      <DependentUpon>FormDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatVe\FormDatVe.resx">
+      <DependentUpon>FormDatVe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatVe\FormDoiVe.resx">
+      <DependentUpon>FormDoiVe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatVe\FormHuyVe.resx">
+      <DependentUpon>FormHuyVe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanTriVien\FormLichSuHoatDong.resx">
+      <DependentUpon>FormLichSuHoatDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NguoiDung\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanTriVien\FormQuanLyNguoiDung.resx">
+      <DependentUpon>FormQuanLyNguoiDung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanTriVien\FormQuanTriVien.resx">
+      <DependentUpon>FormQuanTriVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NguoiDung\FormRegister.resx">
+      <DependentUpon>FormRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanTriVien\FormThongKe.resx">
+      <DependentUpon>FormThongKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatVe\FormTraCuu.resx">
+      <DependentUpon>FormTraCuu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatVe\FormVeCuaToi.resx">
+      <DependentUpon>FormVeCuaToi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BUS_TicketSalesSystem\BUS_TicketSalesSystem.csproj">
+      <Project>{20f8c4eb-8e75-4f8e-a6fc-e540ed819f15}</Project>
+      <Name>BUS_TicketSalesSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO_TicketSalesSystem\DTO_TicketSalesSystem.csproj">
+      <Project>{d0f609b1-ca5a-4a37-be40-e86f9ed89316}</Project>
+      <Name>DTO_TicketSalesSystem</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+</Project>
