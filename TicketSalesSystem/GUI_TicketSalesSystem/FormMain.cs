@@ -1,5 +1,4 @@
-﻿using DTO_TicketSalesSystem;
-using DTO_TicketSalesSystem.utils;
+﻿using DTO_TicketSalesSystem.utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,9 +16,11 @@ namespace GUI_TicketSalesSystem
     {
         private bool isDangXuat = false;
 
-        public FormMain()
+        public FormMain(string username)
         {
             InitializeComponent();
+            this.FormClosing += FormMain_FormClosing;
+            this.Load += FormMain_Load;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -37,22 +38,34 @@ namespace GUI_TicketSalesSystem
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!isDangXuat)
+            if (isDangXuat)
             {
-                DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất trước khi thoát?", "Xác nhận", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                return;
+            }
 
-                if (result == DialogResult.Yes)
+            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất trước khi thoát?", "Xác nhận", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
                 {
-                    DangXuat();
+                    FormLogin loginForm = new FormLogin();
+                    loginForm.Show();
+                    this.Hide();
                 }
-                else if (result == DialogResult.No)
+                catch (Exception ex)
                 {
+                    MessageBox.Show($"Lỗi quay về màn hình đăng nhập: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Application.Exit();
                 }
-                else
-                {
-                    e.Cancel = true;
-                }
+            }
+            else if (result == DialogResult.No)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                e.Cancel = true;
             }
         }
 
@@ -103,9 +116,9 @@ namespace GUI_TicketSalesSystem
         {
             try
             {
-                // Mở form tra cứu để chọn chuyến tàu trước khi đặt vé
-                mnuTraCuu_Click(sender, e);
-                MessageBox.Show("Vui lòng chọn chuyến tàu và nhấn 'Đặt vé' để tiếp tục!", "Hướng dẫn", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Mở form đặt vé với giỏ hàng và thanh toán VNPay
+                var formDatVeGioHang = new FormDatVeGioHang(UserSession.UserId);
+                formDatVeGioHang.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -139,105 +152,16 @@ namespace GUI_TicketSalesSystem
 
         private void mnuThongKe_Click(object sender, EventArgs e)
         {
-            if (!CheckAdminPermission("xem thống kê")) return;
             try
             {
-                foreach (Form childForm in this.MdiChildren)
-                {
-                    if (childForm is FormThongKe)
-                    {
-                        childForm.Activate();
-                        return;
-                    }
-                }
-
-                FormThongKe frm = new FormThongKe();
-                frm.MdiParent = this;
-                frm.Show();
+                // Mở form test VNPay để debug
+                var formVNPayTest = new FormVNPayTest();
+                formVNPayTest.ShowDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi mở form thống kê: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void mnuQuanLyNguoiDung_Click(object sender, EventArgs e)
-        {
-            if (!CheckAdminPermission("quản lý người dùng")) return;
-            try
-            {
-                using (Form formNguoiDung = new FormQuanLyNguoiDung())
-                {
-                    formNguoiDung.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void mnuCaiDatHeThong_Click(object sender, EventArgs e)
-        {
-            if (!CheckAdminPermission("cài đặt hệ thống")) return;
-            try
-            {
-                using (var formCaiDat = new FormCaiDatHeThong())
-                {
-                    formCaiDat.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi mở cài đặt hệ thống: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void mnuDashboard_Click(object sender, EventArgs e)
-        {
-            if (!CheckAdminPermission("xem dashboard")) return;
-            try
-            {
-                foreach (Form childForm in this.MdiChildren)
-                {
-                    if (childForm is FormDashboard)
-                    {
-                        childForm.Activate();
-                        return;
-                    }
-                }
-
-                FormDashboard frm = new FormDashboard();
-                frm.MdiParent = this;
-                frm.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi mở dashboard: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void mnuQuanTriVien_Click(object sender, EventArgs e)
-        {
-            if (!CheckAdminPermission("quản trị hệ thống")) return;
-            try
-            {
-                foreach (Form childForm in this.MdiChildren)
-                {
-                    if (childForm is FormQuanTriVien)
-                    {
-                        childForm.Activate();
-                        return;
-                    }
-                }
-
-                FormQuanTriVien frm = new FormQuanTriVien();
-                frm.MdiParent = this;
-                frm.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi mở form quản trị: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi mở test VNPay: {ex.Message}", "Lỗi", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -246,21 +170,47 @@ namespace GUI_TicketSalesSystem
         #region Helper Methods
         private void DangXuat()
         {
-            isDangXuat = true;
-            UserSession.Clear();
-            this.Close();
+            try
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    isDangXuat = true;
+                    UserSession.Clear();
+                    MessageBox.Show("Đăng xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    FormLogin loginForm = new FormLogin();
+                    loginForm.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi đăng xuất: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void PhanQuyen()
         {
             if (UserSession.IsAdmin)
             {
-                mnuQuanTri.Visible = true;
-                mnuQuanTriVien_Click(null, null);
+                // Admin có tất cả quyền
+                mnuThongKe.Visible = true;
+                mnuThongKe.Text = "Thống kê và Báo cáo";
+
+                // Có thể thêm menu admin khác
+                // mnuQuanLyUser.Visible = true;
+                // mnuQuanLyTau.Visible = true;
             }
             else
             {
-                mnuQuanTri.Visible = false;
+                // User thường chỉ có quyền cơ bản
+                mnuThongKe.Visible = false;
+
+                // Ẩn các menu admin khác
+                // mnuQuanLyUser.Visible = false;
+                // mnuQuanLyTau.Visible = false;
             }
         }
 
